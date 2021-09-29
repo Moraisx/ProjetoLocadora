@@ -1,24 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ProjetoLocadora.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace ProjetoLocadora.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class FilmeController : Controller
     {
-        // GET: api/<ClienteController>
+        // GET: FilmeController
         [HttpGet]
-        [Route("/api/clientes")]
-        public ActionResult<List<Cliente>> Get()
+        [Route("/api/filmes")]
+        public ActionResult<List<Filme>> get()
         {
-            return Dados.clientes;
+            return Dados.filmes;
         }
 
         // GET api/<ClienteController>/5
@@ -28,27 +27,25 @@ namespace ProjetoLocadora.Controllers
             return "value";
         }
 
-        // POST api/<ClienteController>
+        // POST api/<FilmeController>
         [HttpPost]
-        public void Post([FromBody] Cliente cliente)
+        public void Post([FromBody] Filme filme)
         {
-            Dados.AdicionarCliente(cliente);
-            
-
+            Dados.AdicionarFilmes(filme);
         }
 
- 
+
         // PUT api/<ClienteController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/cliente/5
+        // DELETE api/filme/
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Dados.RemoverCliente(id);
+            Dados.RemoverFilme(id);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ProjetoLocadora.Models
         public static List<Cliente> clientes = new List<Cliente>();
         public static List<Filme> filmes = new List<Filme>();
         public static List<Locacao> locacoes = new List<Locacao>();
+        
 
         /*
         public static void Inicializar()
@@ -25,7 +26,8 @@ namespace ProjetoLocadora.Models
 
         public static void AdicionarCliente(Cliente cliente)
         {
-            clientes.Add(cliente);
+
+           clientes.Add(cliente);
         }
 
         public static void RemoverCliente(int clienteID)
@@ -35,6 +37,21 @@ namespace ProjetoLocadora.Models
                 if (cli.ID == clienteID)
                 {
                     clientes.Remove(cli);
+                    break;
+                }
+            }
+        }
+        public static void AdicionarFilmes(Filme filme)
+        {
+            filmes.Add(filme);
+        }
+        public static void RemoverFilme(int filmeID)
+        {
+            foreach (var fil in filmes)
+            {
+                if (fil.ID == filmeID)
+                {
+                    filmes.Remove(fil);
                     break;
                 }
             }
