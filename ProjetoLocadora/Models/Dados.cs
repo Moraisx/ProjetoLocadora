@@ -10,8 +10,10 @@ namespace ProjetoLocadora.Models
         public static List<Cliente> clientes = new List<Cliente>();
         public static List<Filme> filmes = new List<Filme>();
         public static List<Locacao> locacoes = new List<Locacao>();
+        public static List<DevolucaoFilme> devolucoes = new List<DevolucaoFilme>();
         
-        //Verifica se o ID e o Numero de Cadastro são diferente para adiconar um novo cliente
+        //Verifica se o ID e o Numero de Cadastro já estão cadastrados na Lista Cliente.
+        //Se false adiciona um novo cliente
         public static void AdicionarCliente(Cliente cliente)
         {
             bool idExisteNaLista = false;
@@ -43,14 +45,15 @@ namespace ProjetoLocadora.Models
             }
         }*/
 
-        //  Verifica se o ID é diferente para adiconar um novo filme
+        //  Verifica se o ID e o nome do filme já estão cadastrados na Lista Filme.
+        //  Se false adicona um novo filme.
         public static void AdicionarFilmes(Filme filme)
         {
             bool idExisteNaLista = false;
 
             foreach (var fil in filmes)
             {
-                if (fil.ID == filme.ID)
+                if (fil.ID == filme.ID || fil.NomeFilme == filme.NomeFilme)
                 {
                     idExisteNaLista = true;
                 }
@@ -75,7 +78,8 @@ namespace ProjetoLocadora.Models
             }
         }*/
 
-        // Adiciona uma nova locação, verificando se o ID e o Filme já foram locados anteriomente.
+        // Adiciona uma nova locação, verificando se o ID e o Filme já foram locados anteriomente
+        // Caso já não libera nova locação
         public static void AdicionarLocacao(Locacao locacao)
         {
             bool idExisteNaLista = false;
@@ -92,5 +96,36 @@ namespace ProjetoLocadora.Models
                 locacoes.Add(locacao);
             }
         }
+
+        // Verifica se o filme foi locado atraves do ID e nome do filme na lista de Locacao, se for == true 
+        // verifica na lista de DevolucaoFilme se o ID e o nome do filme já existe para não setar
+        // em duplicidade.
+        public static void AdicionarDevolucao(DevolucaoFilme devolucao)
+        {
+            bool idExisteNaLista = false;
+
+            foreach (var dev in locacoes)
+            {
+                if (dev.ID == devolucao.ID || dev.Filme == devolucao.Filme)
+                {
+                    idExisteNaLista = true;
+                }
+            }
+            if(idExisteNaLista == true)
+            {
+                foreach(var dev in devolucoes)
+                {
+                    if(dev.ID == devolucao.ID || dev.Filme == devolucao.Filme)
+                    {
+                        idExisteNaLista = false;
+                    }
+                }
+            }
+            if(idExisteNaLista == true)
+            {
+                devolucoes.Add(devolucao);
+            }
+        }
     }
-}
+   }
+
