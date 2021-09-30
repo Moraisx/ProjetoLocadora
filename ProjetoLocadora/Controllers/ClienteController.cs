@@ -33,22 +33,19 @@ namespace ProjetoLocadora.Controllers
         public void Post([FromBody] Cliente cliente)
         {
             Dados.AdicionarCliente(cliente);
-            
-
         }
 
- 
         // PUT api/<ClienteController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
-
+        /*
         // DELETE api/cliente/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             Dados.RemoverCliente(id);
-        }
+        }*/
     }
 }

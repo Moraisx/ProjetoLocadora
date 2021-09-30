@@ -11,26 +11,27 @@ namespace ProjetoLocadora.Models
         public static List<Filme> filmes = new List<Filme>();
         public static List<Locacao> locacoes = new List<Locacao>();
         
-
-        /*
-        public static void Inicializar()
-        {
-            clientes = new List<Cliente>();
-            clientes.Add(new Cliente() { ID = 1, Nome = "Tiago Morais" });
-            clientes.Add(new Cliente() { ID = 2, Nome = "Monique Morais" });
-
-            filmes.Add(new Filme() { ID = 1, NomeFilme = "Vingadores", FaixaEtaria = 16 });
-            filmes.Add(new Filme() { ID = 2, NomeFilme = "Monstros SA", FaixaEtaria = 0 });
-        }
-        */
-
+        //Verifica se o ID e o Numero de Cadastro são diferente para adiconar um novo cliente
         public static void AdicionarCliente(Cliente cliente)
         {
+            bool idExisteNaLista = false;
 
-           clientes.Add(cliente);
+            foreach(var cli in clientes)
+            {
+                if((cli.ID == cliente.ID) || (cli.Cadastro == cliente.Cadastro))
+                {
+                    idExisteNaLista = true;
+                }
+            }
+            if(idExisteNaLista == false)
+            {
+                clientes.Add(cliente);
+            } 
         }
 
-        public static void RemoverCliente(int clienteID)
+        //Retirado pois "Não é permitido excluir fisicamente um registro"
+
+        /*public static void RemoverCliente(int clienteID)
         {
             foreach (var cli in clientes)
             {
@@ -40,12 +41,29 @@ namespace ProjetoLocadora.Models
                     break;
                 }
             }
-        }
+        }*/
+
+        //  Verifica se o ID é diferente para adiconar um novo filme
         public static void AdicionarFilmes(Filme filme)
         {
-            filmes.Add(filme);
+            bool idExisteNaLista = false;
+
+            foreach (var fil in filmes)
+            {
+                if (fil.ID == filme.ID)
+                {
+                    idExisteNaLista = true;
+                }
+            }
+            if (idExisteNaLista == false)
+            {
+                filmes.Add(filme);
+            }
         }
-        public static void RemoverFilme(int filmeID)
+
+        //Retirado pois "Não é permitido excluir fisicamente um registro"
+
+        /*public static void RemoverFilme(int filmeID)
         {
             foreach (var fil in filmes)
             {
@@ -55,7 +73,24 @@ namespace ProjetoLocadora.Models
                     break;
                 }
             }
-        }
+        }*/
 
+        // Adiciona uma nova locação, verificando se o ID e o Filme já foram locados anteriomente.
+        public static void AdicionarLocacao(Locacao locacao)
+        {
+            bool idExisteNaLista = false;
+
+            foreach (var loc in locacoes)
+            {
+                if (loc.ID == locacao.ID || loc.Filme == locacao.Filme)
+                {
+                    idExisteNaLista = true;
+                }
+            }
+            if (idExisteNaLista == false)
+            {
+                locacoes.Add(locacao);
+            }
+        }
     }
 }

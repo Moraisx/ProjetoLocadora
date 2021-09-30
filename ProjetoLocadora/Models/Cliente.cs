@@ -9,5 +9,8 @@ namespace ProjetoLocadora.Models
     {
         public int ID { get; set; }
         public string Nome { get; set; }
+
+        // Numero de cadastro unico
+        public int Cadastro { get; set; }
     }
 }

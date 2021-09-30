@@ -10,42 +10,41 @@ namespace ProjetoLocadora.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FilmeController : Controller
+    public class LocacaoController : ControllerBase
     {
-        // GET: FilmeController
+        // GET: api/<LocacaoController>
         [HttpGet]
-        [Route("/api/filmes")]
-        public ActionResult<List<Filme>> Get()
+        [Route("/api/locacoes")]
+        public ActionResult<List<Locacao>> Get()
         {
-            return Dados.filmes;
+            return Dados.locacoes;
         }
 
-        // GET api/<FilmeController>/5
+        // GET api/<LocacaoController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<FilmeController>
+        // POST api/<LocacaoController>
         [HttpPost]
-        public void Post([FromBody] Filme filme)
+        public void Post([FromBody] Locacao locacao)
         {
-            Dados.AdicionarFilmes(filme);
+            Dados.AdicionarLocacao(locacao);
         }
 
-        // PUT api/<FilmeController>/5
+        // PUT api/<LocacaoController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         /*
-        // DELETE api/filme/
+        // DELETE api/locacao/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Dados.RemoverFilme(id);
         }*/
     }
 }
